@@ -10,7 +10,6 @@ namespace selenium
     {
         WebDriver _driver;
 
-
         [SetUp]
         public void StartBrowser()
         {
@@ -28,7 +27,8 @@ namespace selenium
         public void SignUpTest()
         {
             var mainPage = new MainPage(_driver);
-            _driver.Navigate().GoToUrl(MainPage.MainPagePath);
+            mainPage.GoToMainPage();
+            mainPage.CloseAlert();
             mainPage.SignUpButtonClick();
             var signUpPage = new SignUpPage(_driver);
             signUpPage.mailField.SendKeys("alina.barc@gmail.com");
@@ -43,8 +43,8 @@ namespace selenium
         public void TooltipTest()
         {
             var mainPage = new MainPage(_driver);
-            _driver.Navigate().GoToUrl(MainPage.MainPagePath);
-            mainPage.MousepadsButton.Click();
+            mainPage.GoToMainPage();
+            mainPage.MousepadsButtonClick();
             var mousepadsPage = new MousepadsPage(_driver);
             mousepadsPage.ArrowLeftClick();
             var tooltopText = mousepadsPage.TooltopText();
@@ -54,8 +54,8 @@ namespace selenium
         [Test]
         public void Filtering()
         {
-            _driver.Navigate().GoToUrl(MainPage.MainPagePath);
             var mainPage = new MainPage(_driver);
+            mainPage.GoToMainPage();
             mainPage.WirelessMiceClick();
             var micePage = new MicePage(_driver);
             micePage.GripStyleFingertipClick();
@@ -74,9 +74,9 @@ namespace selenium
         [Test]
         public void WatchProductFilm()
         {
-            _driver.Navigate().GoToUrl(MainPage.MainPagePath);
-            _driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
             var mainPage = new MainPage(_driver);
+            mainPage.GoToMainPage();
+            _driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
             mainPage.PcHeadsetsClick();
             var headsetPage = new HeadsetPage(_driver);
             headsetPage.OneModelOfHeadsetClick();
@@ -91,9 +91,9 @@ namespace selenium
         [Test]
         public void DownloadSoftware()
         {
-            _driver.Navigate().GoToUrl(MainPage.MainPagePath);
-            _driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
             var mainPage = new MainPage(_driver);
+            mainPage.GoToMainPage();
+            _driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
             mainPage.EngineSoftwareClick();
             _driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
             var softwareEngine = new SoftwareEngine(_driver);

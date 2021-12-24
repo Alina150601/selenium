@@ -1,5 +1,5 @@
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+using SeleniumExtras.PageObjects;
 
 namespace selenium
 {
@@ -9,11 +9,12 @@ namespace selenium
         public HeadsetPage(IWebDriver driver)
         {
             _driver = driver;
+            PageFactory.InitElements(_driver, this);
         }
 
         [FindsBy(How = How.XPath,
             Using = "div[contains(text(), 'Arctis Pro Wireless')][./span[normalize-space() = 'White']]")]
-        private IWebElement OneModelOfHeadset { get; }
+        private IWebElement OneModelOfHeadset { get; set; }
 
         public void OneModelOfHeadsetClick()
         {

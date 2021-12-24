@@ -1,5 +1,5 @@
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+using SeleniumExtras.PageObjects;
 
 namespace selenium
 {
@@ -10,16 +10,17 @@ namespace selenium
         public ArctisProWireless(IWebDriver driver)
         {
             _driver = driver;
+            PageFactory.InitElements(_driver, this);
         }
 
         [FindsBy(How = How.LinkText, Using = "Watch product film  ")]
-        private IWebElement WatchFIlmButton { get; }
+        private IWebElement WatchFIlmButton { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[@aria-label = 'Смотреть']")]
-        private IWebElement PlayButton { get; }
+        private IWebElement PlayButton { get; set; }
 
         [FindsBy(How = How.ClassName, Using = "ytp-time-current")]
-        private IWebElement CurrentTime { get; }
+        private IWebElement CurrentTime { get; set; }
 
 
         public void WatchFIlmClick()

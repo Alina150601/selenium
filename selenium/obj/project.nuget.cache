@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "qScmy2F3xoTu5n+Ked5gpmeiCPZ0RPhpHSrRsx7AYfNorRDrGkxIRBdpVU5sRWYbTSPLcnMnGIkanflTyxIRuA==",
+  "dgSpecHash": "XPFooStCacN+p81XH5zHp4qMJzcWmAy2FtrDX6eUcgj61F0s62GgvMeOUWlkK9SCQitKXqQ/fvyTFcAfbYYS3g==",
   "success": true,
   "projectFilePath": "/Users/malinka/RiderProjects/selenium/selenium/selenium.csproj",
   "expectedPackageFiles": [
     "/Users/malinka/.nuget/packages/coverlet.collector/3.0.3/coverlet.collector.3.0.3.nupkg.sha512",
+    "/Users/malinka/.nuget/packages/dotnetseleniumextras.pageobjects.core/4.0.1/dotnetseleniumextras.pageobjects.core.4.0.1.nupkg.sha512",
+    "/Users/malinka/.nuget/packages/dotnetseleniumextras.waithelpers/3.11.0/dotnetseleniumextras.waithelpers.3.11.0.nupkg.sha512",
     "/Users/malinka/.nuget/packages/jetbrains.annotations/2021.3.0/jetbrains.annotations.2021.3.0.nupkg.sha512",
     "/Users/malinka/.nuget/packages/jetbrains.dotcover.commandlinetools/2021.3.1/jetbrains.dotcover.commandlinetools.2021.3.1.nupkg.sha512",
     "/Users/malinka/.nuget/packages/microsoft.codecoverage/17.0.0/microsoft.codecoverage.17.0.0.nupkg.sha512",
@@ -20,8 +22,9 @@
     "/Users/malinka/.nuget/packages/nuget.core/2.14.0/nuget.core.2.14.0.nupkg.sha512",
     "/Users/malinka/.nuget/packages/nuget.frameworks/6.0.0/nuget.frameworks.6.0.0.nupkg.sha512",
     "/Users/malinka/.nuget/packages/nunit/3.13.2/nunit.3.13.2.nupkg.sha512",
-    "/Users/malinka/.nuget/packages/selenium.support/2.35.0/selenium.support.2.35.0.nupkg.sha512",
+    "/Users/malinka/.nuget/packages/selenium.support/4.1.0/selenium.support.4.1.0.nupkg.sha512",
     "/Users/malinka/.nuget/packages/selenium.webdriver/4.1.0/selenium.webdriver.4.1.0.nupkg.sha512",
+    "/Users/malinka/.nuget/packages/selenium.webdriver.chromedriver/96.0.4664.4500/selenium.webdriver.chromedriver.96.0.4664.4500.nupkg.sha512",
     "/Users/malinka/.nuget/packages/seleniumwebdriverextensions/1.0.3/seleniumwebdriverextensions.1.0.3.nupkg.sha512",
     "/Users/malinka/.nuget/packages/system.reflection.metadata/1.6.0/system.reflection.metadata.1.6.0.nupkg.sha512",
     "/Users/malinka/.nuget/packages/system.security.cryptography.protecteddata/4.4.0/system.security.cryptography.protecteddata.4.4.0.nupkg.sha512"
@@ -43,16 +46,6 @@
       "warningLevel": 1,
       "message": "Package 'NuGet.Core 2.14.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "NuGet.Core",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Selenium.Support 2.35.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Selenium.Support",
       "targetGraphs": [
         "net6.0"
       ]

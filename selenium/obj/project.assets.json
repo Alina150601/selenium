@@ -8,6 +8,30 @@
           "build/netstandard1.0/coverlet.collector.targets": {}
         }
       },
+      "DotNetSeleniumExtras.PageObjects.Core/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Selenium.WebDriver": "4.0.1"
+        },
+        "compile": {
+          "lib/net5.0/SeleniumExtras.PageObjects.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/SeleniumExtras.PageObjects.dll": {}
+        }
+      },
+      "DotNetSeleniumExtras.WaitHelpers/3.11.0": {
+        "type": "package",
+        "dependencies": {
+          "Selenium.WebDriver": "3.10.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/SeleniumExtras.WaitHelpers.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/SeleniumExtras.WaitHelpers.dll": {}
+        }
+      },
       "JetBrains.Annotations/2021.3.0": {
         "type": "package",
         "compile": {
@@ -402,16 +426,16 @@
           "build/NUnit.props": {}
         }
       },
-      "Selenium.Support/2.35.0": {
+      "Selenium.Support/4.1.0": {
         "type": "package",
         "dependencies": {
-          "Selenium.WebDriver": "2.35.0"
+          "Selenium.WebDriver": "4.1.0"
         },
         "compile": {
-          "lib/net40/WebDriver.Support.dll": {}
+          "lib/net5.0/WebDriver.Support.dll": {}
         },
         "runtime": {
-          "lib/net40/WebDriver.Support.dll": {}
+          "lib/net5.0/WebDriver.Support.dll": {}
         }
       },
       "Selenium.WebDriver/4.1.0": {
@@ -424,6 +448,12 @@
         },
         "runtime": {
           "lib/net5.0/WebDriver.dll": {}
+        }
+      },
+      "Selenium.WebDriver.ChromeDriver/96.0.4664.4500": {
+        "type": "package",
+        "build": {
+          "build/Selenium.WebDriver.ChromeDriver.targets": {}
         }
       },
       "SeleniumWebDriverExtensions/1.0.3": {
@@ -525,6 +555,36 @@
         "coverlet-icon.png",
         "coverlet.collector.3.0.3.nupkg.sha512",
         "coverlet.collector.nuspec"
+      ]
+    },
+    "DotNetSeleniumExtras.PageObjects.Core/4.0.1": {
+      "sha512": "Hbhoy7+qnd9IeUh2S8s30ylmL6X7w2/za/pqzkHgBYwvvykIdJg3n3/pVe9Tdi/ccGS/eNOkkwSY9RSa/Y7Z0Q==",
+      "type": "package",
+      "path": "dotnetseleniumextras.pageobjects.core/4.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "dotnetseleniumextras.pageobjects.core.4.0.1.nupkg.sha512",
+        "dotnetseleniumextras.pageobjects.core.nuspec",
+        "lib/net46/SeleniumExtras.PageObjects.dll",
+        "lib/net5.0/SeleniumExtras.PageObjects.dll",
+        "lib/netstandard2.0/SeleniumExtras.PageObjects.dll"
+      ]
+    },
+    "DotNetSeleniumExtras.WaitHelpers/3.11.0": {
+      "sha512": "xc6jVVl5ymgk3ZNWnC/KHxkEup1QpnwYbrwF+NQoCOGERsD8YMlLwmsX4lGhLXCLo/YQTRTIwlKCN9E/doGUNg==",
+      "type": "package",
+      "path": "dotnetseleniumextras.waithelpers/3.11.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dotnetseleniumextras.waithelpers.3.11.0.nupkg.sha512",
+        "dotnetseleniumextras.waithelpers.nuspec",
+        "lib/net35/SeleniumExtras.WaitHelpers.dll",
+        "lib/net40/SeleniumExtras.WaitHelpers.dll",
+        "lib/net45/SeleniumExtras.WaitHelpers.dll",
+        "lib/netstandard2.0/SeleniumExtras.WaitHelpers.dll"
       ]
     },
     "JetBrains.Annotations/2021.3.0": {
@@ -1520,18 +1580,22 @@
         "nunit.nuspec"
       ]
     },
-    "Selenium.Support/2.35.0": {
-      "sha512": "ejnnbQdQcslL6EJpkXGfDaD1BwDwOgAYh8EmUauEL0AlJi2QrBWH3Q98HO5wsdkJA2Eb1i0d74B3cjZOqbG02w==",
+    "Selenium.Support/4.1.0": {
+      "sha512": "wuK5cfgVaimOZqyuriY2geGpNsI9DWky8CuBlrkBnmebkSrRftxqwyUVy0NLooHaAB2iaMj7qM+VOdUEX5bCHQ==",
       "type": "package",
-      "path": "selenium.support/2.35.0",
+      "path": "selenium.support/4.1.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "lib/net35/WebDriver.Support.dll",
-        "lib/net35/WebDriver.Support.xml",
-        "lib/net40/WebDriver.Support.dll",
-        "lib/net40/WebDriver.Support.xml",
-        "selenium.support.2.35.0.nupkg.sha512",
+        "images/icon.png",
+        "lib/net45/WebDriver.Support.dll",
+        "lib/net46/WebDriver.Support.dll",
+        "lib/net47/WebDriver.Support.dll",
+        "lib/net48/WebDriver.Support.dll",
+        "lib/net5.0/WebDriver.Support.dll",
+        "lib/netstandard2.0/WebDriver.Support.dll",
+        "lib/netstandard2.1/WebDriver.Support.dll",
+        "selenium.support.4.1.0.nupkg.sha512",
         "selenium.support.nuspec"
       ]
     },
@@ -1552,6 +1616,24 @@
         "lib/netstandard2.1/WebDriver.dll",
         "selenium.webdriver.4.1.0.nupkg.sha512",
         "selenium.webdriver.nuspec"
+      ]
+    },
+    "Selenium.WebDriver.ChromeDriver/96.0.4664.4500": {
+      "sha512": "7bH+2/bX4IqPXxnMsbD820pCb1DFLeESIbjpUL/Zgq5wfKJHTxtknrQ1wnlMJmWtbpoNcj6Zck7OfoIVstl3zQ==",
+      "type": "package",
+      "path": "selenium.webdriver.chromedriver/96.0.4664.4500",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/DefinePropertiesChromeDriver.targets",
+        "build/Selenium.WebDriver.ChromeDriver.targets",
+        "driver/linux64/chromedriver",
+        "driver/mac64/chromedriver",
+        "driver/win32/chromedriver.exe",
+        "nupkg-icon.png",
+        "selenium.webdriver.chromedriver.96.0.4664.4500.nupkg.sha512",
+        "selenium.webdriver.chromedriver.nuspec"
       ]
     },
     "SeleniumWebDriverExtensions/1.0.3": {
@@ -1636,6 +1718,8 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "DotNetSeleniumExtras.PageObjects.Core >= 4.0.1",
+      "DotNetSeleniumExtras.WaitHelpers >= 3.11.0",
       "JetBrains.Annotations >= 2021.3.0",
       "JetBrains.dotCover.CommandLineTools >= 2021.3.1",
       "Microsoft.NET.Test.Sdk >= 17.0.0",
@@ -1644,7 +1728,9 @@
       "NuGet.Configuration >= 6.0.0",
       "NuGet.Core >= 2.14.0",
       "NuGet.Frameworks >= 6.0.0",
+      "Selenium.Support >= 4.1.0",
       "Selenium.WebDriver >= 4.1.0",
+      "Selenium.WebDriver.ChromeDriver >= 96.0.4664.4500",
       "SeleniumWebDriverExtensions >= 1.0.3",
       "coverlet.collector >= 3.0.3"
     ]
@@ -1686,6 +1772,14 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "DotNetSeleniumExtras.PageObjects.Core": {
+            "target": "Package",
+            "version": "[4.0.1, )"
+          },
+          "DotNetSeleniumExtras.WaitHelpers": {
+            "target": "Package",
+            "version": "[3.11.0, )"
+          },
           "JetBrains.Annotations": {
             "target": "Package",
             "version": "[2021.3.0, )"
@@ -1720,9 +1814,17 @@
             "target": "Package",
             "version": "[6.0.0, )"
           },
+          "Selenium.Support": {
+            "target": "Package",
+            "version": "[4.1.0, )"
+          },
           "Selenium.WebDriver": {
             "target": "Package",
             "version": "[4.1.0, )"
+          },
+          "Selenium.WebDriver.ChromeDriver": {
+            "target": "Package",
+            "version": "[96.0.4664.4500, )"
           },
           "SeleniumWebDriverExtensions": {
             "target": "Package",
@@ -1769,16 +1871,6 @@
       "warningLevel": 1,
       "message": "Package 'NuGet.Core 2.14.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "NuGet.Core",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Selenium.Support 2.35.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Selenium.Support",
       "targetGraphs": [
         "net6.0"
       ]

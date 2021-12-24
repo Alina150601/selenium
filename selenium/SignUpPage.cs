@@ -1,5 +1,5 @@
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+using SeleniumExtras.PageObjects;
 
 namespace selenium
 {
@@ -9,31 +9,37 @@ namespace selenium
         // var mainPage = new MainPage(driver);
         // mainPage.wirelessMiceClick();
         // var another = new SignInPage(driver);
-        public IWebDriver _driver;
+        private IWebDriver _driver;
+
         public SignUpPage(WebDriver driver)
         {
             _driver = driver;
+            PageFactory.InitElements(_driver, this);
         }
 
         [FindsBy(How = How.Id, Using = "id_email")]
-        public IWebElement mailField { get; }
+        [CacheLookup]
+        public IWebElement mailField { get; set; }
 
         [FindsBy(How = How.Id, Using = "id_password1")]
-        public IWebElement passwordField{ get; }
+        [CacheLookup]
+        public IWebElement passwordField { get; set; }
 
         [FindsBy(How = How.Id, Using = "id_password2")]
-        public IWebElement passwordConfirmField{ get; }
+        [CacheLookup]
+        public IWebElement passwordConfirmField { get; set; }
 
         [FindsBy(How = How.Id, Using = "id_accepted_privacy_policy")]
-        public IWebElement privacyPolicyCheckBox{ get; }
+        [CacheLookup]
+        public IWebElement privacyPolicyCheckBox { get; set; }
 
         [FindsBy(How = How.ClassName, Using = "navigation-user__name")]
-        public IWebElement SignUpText{ get; }
+        [CacheLookup]
+        public IWebElement SignUpText { get; set; }
 
         public void privacyPolicyCheckBoxClick()
         {
             privacyPolicyCheckBox.Click();
         }
-
     }
 }
