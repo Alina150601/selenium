@@ -12,83 +12,100 @@ namespace selenium
         private const string MainPagePath = "https://steelseries.com/";
 
         private IWebDriver _driver;
-        private Actions actions;
-        private WebDriverWait wait;
+        private Actions _actions;
+        private WebDriverWait _wait;
 
-        public MainPage(IWebDriver driver)
+        public MainPage(IWebDriver driver, Actions actions, WebDriverWait wait)
         {
             _driver = driver;
-            actions = new Actions(_driver);
-            wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
+            _actions = actions;
+            _wait = wait;
             PageFactory.InitElements(_driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "a.courtesy-navigation__sign-up")]
         [CacheLookup]
+        [FindsBy(How = How.CssSelector, Using = "a.courtesy-navigation__sign-up")]
         private IWebElement SignUpButton { get; set; }
 
-        [FindsBy(How = How.LinkText, Using = " Mousepads ")]
         [CacheLookup]
+        [FindsBy(How = How.LinkText, Using = "Mousepads")]
         private IWebElement MousepadsButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Mice')]")]
         [CacheLookup]
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Mice')]")]
         private IWebElement MiceButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Headsets')]")]
         [CacheLookup]
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Headsets')]")]
         private IWebElement HeadsetsButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Software')]")]
         [CacheLookup]
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Software')]")]
         private IWebElement SoftwareButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='sc-leadgen']")]
         [CacheLookup]
+        [FindsBy(How = How.XPath, Using = "//*[@id='sc-leadgen']")]
         private IWebElement Alert { get; set; }
+
+        [CacheLookup]
+        [FindsBy(How = How.XPath, Using = "/html/body/header/nav[2]/div[1]/ul/li[2]/ul/li[2]/a/span")]
+        private IWebElement WirelessButton { get; set; }
 
         public void GoToMainPage()
         {
             _driver.Navigate().GoToUrl(MainPagePath);
+            _driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(15);
         }
 
         public void CloseAlert()
         {
-            wait.Until(d => Alert.Displayed);
+            _wait.Until(d => Alert.Displayed);
             var closeCross = _driver.FindElement(By.XPath("//*[@id='sc-leadgen']/div/div[2]"));
-            actions.MoveToElement(closeCross).Build().Perform();
+            _actions.MoveToElement(closeCross).Build().Perform();
             closeCross.Click();
         }
+
         public void WirelessMiceClick()
         {
-            actions.MoveToElement(MiceButton).Build().Perform();
-            var wirelessButton = _driver.FindElement(By.XPath("/html/body/header/nav[2]/div[1]/ul/li[2]/ul/li[2]/a/span"));
-            actions.MoveToElement(wirelessButton).Build().Perform();
-            wirelessButton.Click();
+            _actions.MoveToElement(MiceButton).Build().Perform();
+            HoverOver(WirelessButton);
+            WirelessButton.Click();
         }
 
         public void SignUpButtonClick()
         {
-            //wait.Until(ExpectedConditions.ElementToBeClickable(SignUpButton));
             SignUpButton.Click();
         }
 
         public void PcHeadsetsClick()
         {
-            actions.MoveToElement(HeadsetsButton).Build().Perform();
-            _driver.FindElement(By.XPath("//*[contains(text(),'PC')]")).Click();
+            HoverOver(HeadsetsButton);
+            var HeadsetsPCButton = _driver.FindElement(By.XPath(
+                "//nav[@class='category-navigation is-expanded']//span[contains(text(),'PC')]"));
+            _wait.Until(ExpectedConditions.ElementToBeClickable(HeadsetsButton));
+            HeadsetsPCButton.Click();
         }
 
         public void EngineSoftwareClick()
         {
-            actions.MoveToElement(SoftwareButton).Build().Perform();
             SoftwareButton.Click();
-            _driver.FindElement(By.LinkText(" Engine ")).Click();
+            _wait.Until(d => d.FindElement(By.XPath("//nav[2]/div[2]/ul/li[2]/a"))).Click();
         }
 
         public void MousepadsButtonClick()
         {
             MousepadsButton.Click();
+        }
+
+        public void HoverOver(IWebElement webElement)
+        {
+            var action = new Actions(_driver);
+            _wait.Until(drv =>
+            {
+                action.MoveToElement(webElement);
+                action.Build().Perform();
+                return true;
+            });
         }
     }
 }

@@ -1,41 +1,56 @@
+using System.Threading;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
+using SeleniumExtras.WaitHelpers;
+using SeleniumWebDriverExtensions;
 
 namespace selenium
 {
     public class ArctisProWireless
     {
         private IWebDriver _driver;
+        private WebDriverWait _wait;
 
-        public ArctisProWireless(IWebDriver driver)
+        public ArctisProWireless(IWebDriver driver, WebDriverWait wait)
         {
             _driver = driver;
+            _wait = wait;
             PageFactory.InitElements(_driver, this);
         }
 
-        [FindsBy(How = How.LinkText, Using = "Watch product film  ")]
+        [CacheLookup]
+        [FindsBy(How = How.PartialLinkText, Using = "Watch product film")]
         private IWebElement WatchFIlmButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//button[@aria-label = 'Смотреть']")]
-        private IWebElement PlayButton { get; set; }
+        // [CacheLookup]
+        // [FindsBy(How = How.XPath, Using = "//div[@class='ytp-cued-thumbnail-overlay']/div[@class='ytp-cued-thumbnail-overlay-image']")]
+        // private IWebElement PlayButton { get; set; }
 
-        [FindsBy(How = How.ClassName, Using = "ytp-time-current")]
-        private IWebElement CurrentTime { get; set; }
+        [CacheLookup]
+        [FindsBy(How = How.XPath, Using = "//*[@class='ytp-play-button ytp-button']")]
+        private IWebElement PlayButton { get; set; }
 
 
         public void WatchFIlmClick()
         {
+            _wait.Until(ExpectedConditions.ElementToBeClickable(WatchFIlmButton));
             WatchFIlmButton.Click();
         }
 
         public void PlayButtonClick()
         {
-            PlayButton.Click();
+            _driver.SwitchTo().Frame(_driver.FindElement(By.XPath("//*[@class='mfp-iframe']")));
+            Thread.Sleep(3000);
+            var playButton = _driver.FindElement(By.XPath("//*[@class='ytp-play-button ytp-button']"));
+            _wait.Until(d => playButton);
+            playButton.Click();
         }
 
         public string CheckVideoPlayed()
         {
-            return CurrentTime.Text;
+            var currentTime = _driver.FindElement(By.ClassName("ytp-time-current"));
+            return currentTime.Text;
         }
     }
 }

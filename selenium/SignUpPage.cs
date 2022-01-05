@@ -1,16 +1,13 @@
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 
 namespace selenium
 {
     public class SignUpPage
     {
-        // var driver = new ChromeDriver();
-        // var mainPage = new MainPage(driver);
-        // mainPage.wirelessMiceClick();
-        // var another = new SignInPage(driver);
         private IWebDriver _driver;
-
+        private WebDriverWait wait;
         public SignUpPage(WebDriver driver)
         {
             _driver = driver;
@@ -40,6 +37,15 @@ namespace selenium
         public void privacyPolicyCheckBoxClick()
         {
             privacyPolicyCheckBox.Click();
+        }
+
+        public void FillForm()
+        {
+            wait.Until(_=>mailField.Displayed);
+            mailField.SendKeys("alina.barc@gmail.com");
+            passwordField.SendKeys("qwer1234");
+            passwordConfirmField.SendKeys("qwer1234");
+            privacyPolicyCheckBoxClick();
         }
     }
 }

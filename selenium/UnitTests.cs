@@ -3,38 +3,36 @@ using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 
 namespace selenium
 {
     public class Tests
     {
-        WebDriver _driver;
+        private WebDriver _driver;
+        private WebDriverWait _wait;
+        private Actions _actions;
 
         [SetUp]
         public void StartBrowser()
         {
             _driver = new ChromeDriver();
+            _actions = new Actions(_driver);
+            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
             _driver.Manage().Window.Maximize();
         }
 
-        [Test]
-        public void Test1()
-        {
-            Assert.Pass();
-        }
 
         [Test]
         public void SignUpTest()
         {
-            var mainPage = new MainPage(_driver);
+            var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
             mainPage.CloseAlert();
             mainPage.SignUpButtonClick();
             var signUpPage = new SignUpPage(_driver);
-            signUpPage.mailField.SendKeys("alina.barc@gmail.com");
-            signUpPage.passwordField.SendKeys("qwer1234");
-            signUpPage.passwordConfirmField.SendKeys("qwer1234");
-            signUpPage.privacyPolicyCheckBoxClick();
+            signUpPage.FillForm();
             Assert.IsTrue(signUpPage.SignUpText.Text != null);
             Assert.Pass();
         }
@@ -42,11 +40,12 @@ namespace selenium
         [Test]
         public void TooltipTest()
         {
-            var mainPage = new MainPage(_driver);
+            var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
+            mainPage.CloseAlert();
             mainPage.MousepadsButtonClick();
-            var mousepadsPage = new MousepadsPage(_driver);
-            mousepadsPage.ArrowLeftClick();
+            var mousepadsPage = new MousepadsPage(_driver, _actions, _wait);
+            mousepadsPage.ArrowRightClick();
             var tooltopText = mousepadsPage.TooltopText();
             Assert.AreEqual("XL", tooltopText);
         }
@@ -54,34 +53,32 @@ namespace selenium
         [Test]
         public void Filtering()
         {
-            var mainPage = new MainPage(_driver);
+            var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
+            mainPage.CloseAlert();
             mainPage.WirelessMiceClick();
-            var micePage = new MicePage(_driver);
+            var micePage = new MicePage(_driver, _actions, _wait);
             micePage.GripStyleFingertipClick();
             micePage.CheckNotDisplayedElement();
-            micePage.SortingRudioButtonClick();
-            micePage.SortByPriceLowToHighClick();
-            //5.	Check that mices are ordered correctly by price
+            micePage.SortingButtonClick();
+            Assert.IsTrue(micePage.CheckSortLowerToHigh());
             var firstNumberOfItems = micePage.GetNumberOfItems();
-            micePage.RemoveConnectivityWiredFilterClick();
+            micePage.RemoveWirelessFilter();
             var secondNumberOfItems = micePage.GetNumberOfItems();
-            var resultOfDeletedFilter = firstNumberOfItems < secondNumberOfItems;
-            Assert.IsTrue(resultOfDeletedFilter);
-            //8.	Check that sorting is still by “Price (low to high)
+            Assert.IsTrue(int.Parse(firstNumberOfItems) < int.Parse(secondNumberOfItems));
+            Assert.AreEqual("Price (low to high)", micePage.CheckSortingPriceLowToHigh());
         }
 
         [Test]
         public void WatchProductFilm()
         {
-            var mainPage = new MainPage(_driver);
+            var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
-            _driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+            mainPage.CloseAlert();
             mainPage.PcHeadsetsClick();
-            var headsetPage = new HeadsetPage(_driver);
+            var headsetPage = new HeadsetPage(_driver, _wait);
             headsetPage.OneModelOfHeadsetClick();
-            _driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
-            var arctisProWireless = new ArctisProWireless(_driver);
+            var arctisProWireless = new ArctisProWireless(_driver, _wait);
             arctisProWireless.WatchFIlmClick();
             arctisProWireless.PlayButtonClick();
             Thread.Sleep(2000);
@@ -91,14 +88,18 @@ namespace selenium
         [Test]
         public void DownloadSoftware()
         {
-            var mainPage = new MainPage(_driver);
+            var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
-            _driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+            mainPage.CloseAlert();
             mainPage.EngineSoftwareClick();
-            _driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
             var softwareEngine = new SoftwareEngine(_driver);
-            softwareEngine.DownloadForWindowsClick();
-            //???4.	Check installer is downloaded successfully
+            Assert.IsTrue(softwareEngine.CheckFileDownloaded("SteelSeriesGG12.2.0Setup.exe"));
         }
+
+        // [TearDown]
+        // public void CloseBrowser()
+        // {
+        //     _driver.Quit();
+        // }
     }
 }
