@@ -1,4 +1,5 @@
 using System;
+using System.IO.IsolatedStorage;
 using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -93,7 +94,20 @@ namespace selenium
             mainPage.CloseAlert();
             mainPage.EngineSoftwareClick();
             var softwareEngine = new SoftwareEngine(_driver);
-            Assert.IsTrue(softwareEngine.CheckFileDownloaded("SteelSeriesGG12.2.0Setup.exe"));
+            softwareEngine.DownloadForWindowsClick();
+            for (var i = 0; i < 12; i++)
+            {
+                var downloaded = softwareEngine.CheckFileDownloaded("SteelSeriesGG12.2.0Setup.exe");
+                if (downloaded)
+                {
+                    Assert.Pass();
+                    return;
+                }
+
+                Thread.Sleep(15000);
+            }
+
+            Assert.Fail();
         }
 
         // [TearDown]

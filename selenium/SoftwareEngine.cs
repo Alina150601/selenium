@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 
@@ -24,12 +25,24 @@ namespace selenium
             DownloadForWindows.Click();
         }
 
-        public bool CheckFileDownloaded(string filename)
+        public  bool CheckFileDownloaded(string filename)
         {
             var exist = false;
-            var Path = Environment.GetEnvironmentVariable("USERPROFILE") + "\\Downloads";
+            var Path = String.Empty;
+            try
+            {
+                if (Environment.GetEnvironmentVariable("USERPROFILE") == null)
+                {
+                    throw new InvalidOperationException("Environment variable 'USERPROFILE' is not found");
+                }
+                Path = Environment.GetEnvironmentVariable("USERPROFILE") + "\\Downloads";
+            }
+            catch (Exception)
+            {
+                Path = "/Users/malinka/Downloads/";
+            }
             var filePaths = Directory.GetFiles(Path);
-            foreach (var p in filePaths)
+            foreach (string p in filePaths)
             {
                 if(p.Contains(filename))
                 {

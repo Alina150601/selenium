@@ -104,3 +104,4 @@
 /Users/malinka/RiderProjects/selenium/selenium/bin/Debug/net6.0/JetBrains.Annotations.dll
 /Users/malinka/RiderProjects/selenium/selenium/bin/Debug/net6.0/SeleniumExtras.PageObjects.dll
 /Users/malinka/RiderProjects/selenium/selenium/bin/Debug/net6.0/SeleniumExtras.WaitHelpers.dll
+/Users/malinka/RiderProjects/selenium/selenium/bin/Debug/net6.0/Syroot.KnownFolders.dll

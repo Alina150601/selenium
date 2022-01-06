@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
@@ -40,7 +41,7 @@ namespace selenium
         private IWebElement HeadsetsButton { get; set; }
 
         [CacheLookup]
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Software')]")]
+        [FindsBy(How = How.XPath, Using = "//button[normalize-space(text()) = 'Software']")]
         private IWebElement SoftwareButton { get; set; }
 
         [CacheLookup]
@@ -48,13 +49,13 @@ namespace selenium
         private IWebElement Alert { get; set; }
 
         [CacheLookup]
-        [FindsBy(How = How.XPath, Using = "/html/body/header/nav[2]/div[1]/ul/li[2]/ul/li[2]/a/span")]
+        [FindsBy(How = How.XPath, Using = "//ul[@class='category-navigation__sub-list navigation-dropdown__list']//span[@class='category-navigation__sub-text' and normalize-space(text()) = 'Wireless']")]
         private IWebElement WirelessButton { get; set; }
 
         public void GoToMainPage()
         {
             _driver.Navigate().GoToUrl(MainPagePath);
-            _driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(15);
+            _driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
         }
 
         public void CloseAlert()
@@ -89,7 +90,7 @@ namespace selenium
         public void EngineSoftwareClick()
         {
             SoftwareButton.Click();
-            _wait.Until(d => d.FindElement(By.XPath("//nav[2]/div[2]/ul/li[2]/a"))).Click();
+            _wait.Until(d => d.FindElement(By.XPath("//li[@class='category-navigation__item']/a[normalize-space(text()) = 'Engine']"))).Click();
         }
 
         public void MousepadsButtonClick()

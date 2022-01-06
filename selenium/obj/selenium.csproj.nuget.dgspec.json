@@ -96,6 +96,10 @@
               "target": "Package",
               "version": "[1.0.3, )"
             },
+            "Syroot.Windows.IO.KnownFolders": {
+              "target": "Package",
+              "version": "[1.2.3, )"
+            },
             "coverlet.collector": {
               "target": "Package",
               "version": "[3.0.3, )"
