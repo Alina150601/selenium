@@ -1,6 +1,3 @@
-using System.Net.Mime;
-using System.Threading;
-using ComplianceAuditSystems.Acabim.Services;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
@@ -26,10 +23,6 @@ namespace selenium
         [CacheLookup]
         [FindsBy(How = How.XPath, Using = "//div[contains(text(), 'QcK Prism Cloth')][./span[normalize-space() = 'XL']]/../div[@class='catalog-list-product__related-text']")]
         private IWebElement ModelOfMousepad { get; set; }
-
-        [CacheLookup]
-        [FindsBy(How = How.XPath, Using = "//div[@class='tooltip'][2]/div[@class='tooltip__inner']")]
-        private IWebElement Tooltop { get; set; }
 
         public void ArrowRightClick()
         {

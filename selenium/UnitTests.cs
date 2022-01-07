@@ -108,10 +108,10 @@ namespace selenium
             Assert.Fail();
         }
 
-        // [TearDown]
-        // public void CloseBrowser()
-        // {
-        //     _driver.Quit();
-        // }
+        [TearDown]
+        public void CloseBrowser()
+        {
+            _driver.Quit();
+        }
     }
 }
