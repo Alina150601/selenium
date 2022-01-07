@@ -1,7 +1,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
-using SeleniumExtras.WaitHelpers;
 
 namespace selenium
 {
@@ -23,7 +22,6 @@ namespace selenium
 
         public void OneModelOfHeadsetClick()
         {
-            //_wait.Until(ExpectedConditions.ElementToBeClickable(OneModelOfHeadset));
             _wait.Until(d => OneModelOfHeadset.Displayed);
             OneModelOfHeadset.Click();
         }
