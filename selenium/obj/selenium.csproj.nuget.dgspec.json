@@ -38,6 +38,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "ComplianceAuditSystems.AcabimCommonServices": {
+              "target": "Package",
+              "version": "[1.0.475, )"
+            },
             "DotNetSeleniumExtras.PageObjects.Core": {
               "target": "Package",
               "version": "[4.0.1, )"

@@ -19,6 +19,11 @@
     <Import Project="$(NuGetPackageRoot)microsoft.net.test.sdk/17.0.0/build/netcoreapp2.1/Microsoft.NET.Test.Sdk.props" Condition="Exists('$(NuGetPackageRoot)microsoft.net.test.sdk/17.0.0/build/netcoreapp2.1/Microsoft.NET.Test.Sdk.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgMicrosoft_SourceLink_Common Condition=" '$(PkgMicrosoft_SourceLink_Common)' == '' ">/Users/malinka/.nuget/packages/microsoft.sourcelink.common/1.0.0</PkgMicrosoft_SourceLink_Common>
+    <PkgMicrosoft_Build_Tasks_Git Condition=" '$(PkgMicrosoft_Build_Tasks_Git)' == '' ">/Users/malinka/.nuget/packages/microsoft.build.tasks.git/1.0.0</PkgMicrosoft_Build_Tasks_Git>
+    <PkgMicrosoft_SourceLink_GitHub Condition=" '$(PkgMicrosoft_SourceLink_GitHub)' == '' ">/Users/malinka/.nuget/packages/microsoft.sourcelink.github/1.0.0</PkgMicrosoft_SourceLink_GitHub>
     <PkgJetBrains_dotCover_CommandLineTools Condition=" '$(PkgJetBrains_dotCover_CommandLineTools)' == '' ">/Users/malinka/.nuget/packages/jetbrains.dotcover.commandlinetools/2021.3.1</PkgJetBrains_dotCover_CommandLineTools>
+    <PkgAWSSDK_Core Condition=" '$(PkgAWSSDK_Core)' == '' ">/Users/malinka/.nuget/packages/awssdk.core/3.7.0.37</PkgAWSSDK_Core>
+    <PkgAWSSDK_S3 Condition=" '$(PkgAWSSDK_S3)' == '' ">/Users/malinka/.nuget/packages/awssdk.s3/3.7.1.7</PkgAWSSDK_S3>
   </PropertyGroup>
 </Project>

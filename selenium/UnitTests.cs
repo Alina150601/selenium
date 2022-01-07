@@ -46,8 +46,7 @@ namespace selenium
             mainPage.MousepadsButtonClick();
             var mousepadsPage = new MousepadsPage(_driver, _actions, _wait);
             mousepadsPage.ArrowRightClick();
-            var tooltopText = mousepadsPage.TooltopText();
-            Assert.AreEqual("XL", tooltopText);
+            Assert.AreEqual("XL",  mousepadsPage.TooltopText());
         }
 
         [Test]

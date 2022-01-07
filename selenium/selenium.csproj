@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="ComplianceAuditSystems.AcabimCommonServices" Version="1.0.475" />
         <PackageReference Include="DotNetSeleniumExtras.PageObjects.Core" Version="4.0.1" />
         <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
         <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
