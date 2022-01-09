@@ -5,7 +5,7 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using SeleniumExtras.WaitHelpers;
 
-namespace selenium
+namespace Selenium
 {
     public class MainPage
     {

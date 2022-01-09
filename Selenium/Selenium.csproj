@@ -5,6 +5,8 @@
         <Nullable>disable</Nullable>
 
         <IsPackable>false</IsPackable>
+
+        <RootNamespace>Selenium</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

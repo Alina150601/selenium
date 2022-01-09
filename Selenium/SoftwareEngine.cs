@@ -3,7 +3,7 @@ using System.IO;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 
-namespace selenium
+namespace Selenium
 {
     public class SoftwareEngine
     {
