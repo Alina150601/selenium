@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -71,31 +72,24 @@ namespace Selenium
             Thread.Sleep(3000);
             _wait.Until(ExpectedConditions.ElementToBeClickable(
                 _driver.FindElement(By.XPath("//*[@class='catalog-list-product__current-price']"))));
+
             var priceWebElements = _driver.FindElements(By.XPath("//*[@class='catalog-list-product__current-price']"));
             var priceWebElsText = priceWebElements
                 .Select(e => e.Text)
                 .ToList();
 
-            var priceStrings = new List<string>();
-            foreach (var priceWebElText in priceWebElsText)
-            {
-                var allowedSymbols = new List<char> { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', ',', '.' };
-
-                var allowedCharsOnly = priceWebElText
-                    .Where(c => allowedSymbols.Contains(c))
-                    .ToList();
-
-                var stringWithAllowedCharsOnly = new string(allowedCharsOnly.ToArray());
-
-                var stringsWithDotInsteadOfComma = stringWithAllowedCharsOnly.Replace(',', '.');
-
-                priceStrings.Add(stringsWithDotInsteadOfComma);
-            }
+            var priceStrings = priceWebElsText
+                .Select(str => new string(str.Where(c =>
+                    c is '1' or '2' or '3' or '4' or '5' or '6' or '7' or '8' or '9' or '0' or '.' or ',')
+                    .ToArray()))
+                .ToList();
 
             var prices = priceStrings
-                .Select(str => double.Parse(str))
+                .Select(double.Parse)
                 .ToList();
-            var orderedPrices = prices
+
+            var orderedPrices = priceStrings
+                .Select(double.Parse)
                 .OrderBy(x => x)
                 .ToList();
 
