@@ -1,9 +1,8 @@
-using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using SeleniumExtras.WaitHelpers;
@@ -13,13 +12,11 @@ namespace selenium
     public class MicePage
     {
         private IWebDriver _driver;
-        private Actions _actions;
         private WebDriverWait _wait;
 
-        public MicePage(IWebDriver driver, Actions actions, WebDriverWait wait)
+        public MicePage(IWebDriver driver, WebDriverWait wait)
         {
             _driver = driver;
-            _actions = actions;
             _wait = wait;
             PageFactory.InitElements(_driver, this);
         }
@@ -44,11 +41,6 @@ namespace selenium
         [FindsBy(How = How.XPath, Using = "//*[@aria-label='Remove filter for Connectivity Wireless']")]
         private IWebElement RemoveWirelessFilterButton { get; set; }
 
-        [CacheLookup]
-        [FindsBy(How = How.XPath, Using = "//*[@class='catalog-list-product__current-price']")]
-        private IWebElement CatalogPrices { get; set; }
-
-
         public void GripStyleFingertipClick()
         {
             _wait.Until(ExpectedConditions.ElementToBeClickable(GripStyleFingertip)).Click();
@@ -58,9 +50,9 @@ namespace selenium
 
         public void SortingButtonClick()
         {
-            _wait.Until(d => SortingRudioButton.Displayed);
+            _wait.Until(_ => SortingRudioButton.Displayed);
             SortingRudioButton.Click();
-            _wait.Until(d => SortByPriceLowToHigh.Displayed);
+            _wait.Until(_ => SortByPriceLowToHigh.Displayed);
             SortByPriceLowToHigh.Click();
         }
 
@@ -76,24 +68,14 @@ namespace selenium
                 .Select(e => e.Text)
                 .ToList();
 
-            var priceStrings = new List<string>();
-            foreach (var priceWebElText in priceWebElsText)
-            {
-                var allowedSymbols = new List<char> { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', ',', '.' };
-
-                var allowedCharsOnly = priceWebElText
-                    .Where(c => allowedSymbols.Contains(c))
-                    .ToList();
-
-                var stringWithAllowedCharsOnly = new string(allowedCharsOnly.ToArray());
-
-                var stringsWithDotInsteadOfComma = stringWithAllowedCharsOnly.Replace(',', '.');
-
-                priceStrings.Add(stringsWithDotInsteadOfComma);
-            }
+            var priceStrings = priceWebElsText
+                .Select(str => new string(str.Where(c =>
+                        c is '1' or '2' or '3' or '4' or '5' or '6' or '7' or '8' or '9' or '0' or '.' or ',')
+                    .ToArray()))
+                .ToList();
 
             var prices = priceStrings
-                .Select(str => double.Parse(str))
+                .Select(str => double.Parse(str, NumberStyles.Any, CultureInfo.InvariantCulture))
                 .ToList();
             var orderedPrices = prices
                 .OrderBy(x => x)
@@ -104,7 +86,7 @@ namespace selenium
 
         public void RemoveWirelessFilter()
         {
-            _wait.Until(d => RemoveWirelessFilterButton.Displayed);
+            _wait.Until(_ => RemoveWirelessFilterButton.Displayed);
             RemoveWirelessFilterButton.Click();
             Thread.Sleep(2000);
         }

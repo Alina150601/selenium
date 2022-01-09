@@ -22,7 +22,7 @@ namespace selenium
 
         public void OneModelOfHeadsetClick()
         {
-            _wait.Until(d => OneModelOfHeadset.Displayed);
+            _wait.Until(_ => OneModelOfHeadset.Displayed);
             OneModelOfHeadset.Click();
         }
     }

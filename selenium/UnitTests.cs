@@ -29,12 +29,12 @@ namespace selenium
         {
             var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
-            mainPage.CloseAlert();
+            // Deprecated: this alert doesn't appear anymore.
+            //mainPage.CloseAlert();
             mainPage.SignUpButtonClick();
             var signUpPage = new SignUpPage(_driver);
             signUpPage.FillForm();
             Assert.IsTrue(signUpPage.SignUpText.Text != null);
-            Assert.Pass();
         }
 
         [Test]
@@ -42,11 +42,12 @@ namespace selenium
         {
             var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
-            mainPage.CloseAlert();
+            // Deprecated: this alert doesn't appear anymore.
+            //mainPage.CloseAlert();
             mainPage.MousepadsButtonClick();
-            var mousepadsPage = new MousepadsPage(_driver, _actions, _wait);
+            var mousepadsPage = new MousepadsPage(_driver, _wait);
             mousepadsPage.ArrowRightClick();
-            Assert.AreEqual("XL",  mousepadsPage.TooltopText());
+            Assert.AreEqual("XL",  mousepadsPage.TooltipText());
         }
 
         [Test]
@@ -54,9 +55,10 @@ namespace selenium
         {
             var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
-            mainPage.CloseAlert();
+            // Deprecated: this alert doesn't appear anymore.
+            //mainPage.CloseAlert();
             mainPage.WirelessMiceClick();
-            var micePage = new MicePage(_driver, _actions, _wait);
+            var micePage = new MicePage(_driver, _wait);
             micePage.GripStyleFingertipClick();
             micePage.CheckNotDisplayedElement();
             micePage.SortingButtonClick();
@@ -73,7 +75,8 @@ namespace selenium
         {
             var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
-            mainPage.CloseAlert();
+            // Deprecated: this alert doesn't appear anymore.
+            //mainPage.CloseAlert();
             mainPage.PcHeadsetsClick();
             var headsetPage = new HeadsetPage(_driver, _wait);
             headsetPage.OneModelOfHeadsetClick();
@@ -89,7 +92,8 @@ namespace selenium
         {
             var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
-            mainPage.CloseAlert();
+            // Deprecated: this alert doesn't appear anymore.
+            //mainPage.CloseAlert();
             mainPage.EngineSoftwareClick();
             var softwareEngine = new SoftwareEngine(_driver);
             softwareEngine.DownloadForWindowsClick();

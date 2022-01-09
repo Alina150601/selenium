@@ -59,7 +59,7 @@ namespace selenium
 
         public void CloseAlert()
         {
-            _wait.Until(d => Alert.Displayed);
+            _wait.Until(_ => Alert.Displayed);
             var closeCross = _driver.FindElement(By.XPath("//*[@id='sc-leadgen']/div/div[2]"));
             _actions.MoveToElement(closeCross).Build().Perform();
             closeCross.Click();
@@ -80,10 +80,10 @@ namespace selenium
         public void PcHeadsetsClick()
         {
             HoverOver(HeadsetsButton);
-            var HeadsetsPCButton = _driver.FindElement(By.XPath(
+            var headsetsPcButton = _driver.FindElement(By.XPath(
                 "//nav[@class='category-navigation is-expanded']//span[contains(text(),'PC')]"));
             _wait.Until(ExpectedConditions.ElementToBeClickable(HeadsetsButton));
-            HeadsetsPCButton.Click();
+            headsetsPcButton.Click();
         }
 
         public void EngineSoftwareClick()
