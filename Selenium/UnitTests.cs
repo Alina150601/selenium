@@ -29,7 +29,7 @@ namespace Selenium
         {
             var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
-            mainPage.CloseAlert();
+            //mainPage.CloseAlert();
             mainPage.SignUpButtonClick();
             var signUpPage = new SignUpPage(_driver);
             signUpPage.FillForm();
@@ -42,7 +42,7 @@ namespace Selenium
         {
             var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
-            mainPage.CloseAlert();
+            //mainPage.CloseAlert();
             mainPage.MousepadsButtonClick();
             var mousepadsPage = new MousepadsPage(_driver, _actions, _wait);
             mousepadsPage.ArrowRightClick();
@@ -54,7 +54,7 @@ namespace Selenium
         {
             var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
-            mainPage.CloseAlert();
+            //mainPage.CloseAlert();
             mainPage.WirelessMiceClick();
             var micePage = new MicePage(_driver, _actions, _wait);
             micePage.GripStyleFingertipClick();
@@ -73,7 +73,7 @@ namespace Selenium
         {
             var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
-            mainPage.CloseAlert();
+            //mainPage.CloseAlert();
             mainPage.PcHeadsetsClick();
             var headsetPage = new HeadsetPage(_driver, _wait);
             headsetPage.OneModelOfHeadsetClick();
@@ -89,7 +89,7 @@ namespace Selenium
         {
             var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
-            mainPage.CloseAlert();
+            //mainPage.CloseAlert();
             mainPage.EngineSoftwareClick();
             var softwareEngine = new SoftwareEngine(_driver);
             softwareEngine.DownloadForWindowsClick();
