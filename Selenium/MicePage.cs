@@ -85,11 +85,11 @@ namespace Selenium
                 .ToList();
 
             var prices = priceStrings
-                .Select(double.Parse)
+                .Select(str => double.Parse(str, NumberStyles.Any, CultureInfo.InvariantCulture))
                 .ToList();
 
             var orderedPrices = priceStrings
-                .Select(double.Parse)
+                .Select(str => double.Parse(str, NumberStyles.Any, CultureInfo.InvariantCulture))
                 .OrderBy(x => x)
                 .ToList();
 
