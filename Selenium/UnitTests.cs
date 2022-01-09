@@ -29,6 +29,7 @@ namespace Selenium
         {
             var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
+            // Deprecated: this alert doesn't appear anymore.
             //mainPage.CloseAlert();
             mainPage.SignUpButtonClick();
             var signUpPage = new SignUpPage(_driver);
@@ -42,11 +43,12 @@ namespace Selenium
         {
             var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
+            // Deprecated: this alert doesn't appear anymore.
             //mainPage.CloseAlert();
             mainPage.MousepadsButtonClick();
             var mousepadsPage = new MousepadsPage(_driver, _actions, _wait);
             mousepadsPage.ArrowRightClick();
-            Assert.AreEqual("XL",  mousepadsPage.TooltopText());
+            Assert.AreEqual("XL",  mousepadsPage.TooltipText());
         }
 
         [Test]
@@ -54,6 +56,7 @@ namespace Selenium
         {
             var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
+            // Deprecated: this alert doesn't appear anymore.
             //mainPage.CloseAlert();
             mainPage.WirelessMiceClick();
             var micePage = new MicePage(_driver, _actions, _wait);
@@ -73,6 +76,7 @@ namespace Selenium
         {
             var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
+            // Deprecated: this alert doesn't appear anymore.
             //mainPage.CloseAlert();
             mainPage.PcHeadsetsClick();
             var headsetPage = new HeadsetPage(_driver, _wait);
@@ -89,6 +93,7 @@ namespace Selenium
         {
             var mainPage = new MainPage(_driver, _actions, _wait);
             mainPage.GoToMainPage();
+            // Deprecated: this alert doesn't appear anymore.
             //mainPage.CloseAlert();
             mainPage.EngineSoftwareClick();
             var softwareEngine = new SoftwareEngine(_driver);
